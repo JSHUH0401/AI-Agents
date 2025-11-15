@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뉴스 검색기</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 2em; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #4a4a4a; }
+        form { display: flex; gap: 10px; margin-bottom: 2em; }
+        input[type="text"] { flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .news-list { list-style-type: none; padding: 0; }
+        .news-item { background: #f9f9f9; border: 1px solid #eee; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .news-item h2 { margin: 0 0 10px 0; font-size: 1.2em; }
+        .news-item a { text-decoration: none; color: #007bff; }
+        .news-item p { margin: 5px 0 0 0; color: #555; }
+        .search-topic { text-align: center; margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>뉴스 검색기</h1>
+        <form action="/" method="post">
+            <input type="text" name="topic" placeholder="검색할 주제를 입력하세요" required>
+            <button type="submit">검색</button>
+        </form>
+
+        {% if topic %}
+            <h2 class="search-topic">'{{ topic }}'에 대한 검색 결과입니다.</h2>
+        {% endif %}
+
+        {% if articles %}
+            <ul class="news-list">
+                {% for article in articles %}
+                    <li class="news-item">
+                        <h2><a href="{{ article.link }}" target="_blank">{{ article.title }}</a></h2>
+                        {% if article.summary %}
+                            <p>{{ article.summary }}</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif topic %}
+            <p>검색 결과가 없습니다.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
