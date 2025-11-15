@@ -143,3 +143,5 @@ def get_news_articles(topic, page_size=5):
         article["summary"] = summary.strip()
         summarized_articles.append(article)
     return summarized_articles
+
+#github 테스트
