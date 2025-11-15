@@ -8,7 +8,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_loaders import WebBaseLoader
 
-client = openai.OpenAI()
 # .env 파일에서 환경 변수를 불러옵니다.
 load_dotenv()
 # .env 파일에 OPENAI_API_KEY="sk-..." 형태로 키가 저장되어 있어야 합니다.
