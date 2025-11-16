@@ -36,7 +36,7 @@
             <ul class="news-list">
                 {% for article in articles %}
                     <li class="news-item">
-                        <h2><a href="{{ article.link }}" target="_blank">{{ article.title }}</a></h2>
+                        <h2><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h2>
                         {% if article.summary %}
                             <p>{{ article.summary }}</p>
                         {% endif %}

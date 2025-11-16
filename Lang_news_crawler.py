@@ -13,7 +13,7 @@ load_dotenv()
 # .env 파일에 OPENAI_API_KEY="sk-..." 형태로 키가 저장되어 있어야 합니다.
 # 참고: openai 라이브러리는 환경변수 OPENAI_API_KEY를 자동으로 읽어 사용합니다.
 
-llm = ChatOpenAI(model ="gpt-3.5 turbo", temperature = 0)
+llm = ChatOpenAI(model ="gpt-3.5-turbo", temperature = 0)
 
 prompt = ChatPromptTemplate.from_messages(
     [("system", "You are a Helpful assistant that summarizes news articles in three sentences in Korean"),
@@ -116,7 +116,7 @@ def get_news_articles(topic, page_size=5):
         else:
             try:
                 #가져온 기사 텍스트 요약하기
-                summarize_chain.invoke({"article_text":full_text[:4000]})
+                summary = summarize_chain.invoke({"article_text":full_text[:4000]})
             except Exception as e:
                 print(f"Langchain 실행 중 에러 발생: Error: {e}")
                 summary = "AI 실행 중 에러가 발생했습니다."
